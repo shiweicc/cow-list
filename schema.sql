@@ -4,3 +4,16 @@
 -- CREATE YOUR DATABASE
 -- CREATE YOUR TABLES
 -- ADD RECORDS TO YOUR TABLE
+
+DROP DATABASE IF EXISTS chat;
+CREATE DATABASE cowlist;
+
+USE cowlist;
+
+DROP SCHEMA IF EXISTS cow;
+CREATE TABLE cow (
+  id int NOT NULL AUTO_INCREMENT,
+  name varchar(255),
+  description varchar(255),
+  PRIMARY KEY (id)
+);
