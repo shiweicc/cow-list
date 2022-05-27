@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 const express = require('express');
 
 const app = express();
@@ -10,13 +8,14 @@ const HOSTNAME = '127.0.0.1';
 const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
+/*
+For POST & PUT request:
+to recognize the incoming Request Object as a JSON Object | strings or arrays
+*/
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.send('Hello from the server!');
-});
-
+// Read all cows from the cow list
 app.get('/api/cows', (req, res) => {
   db.connection.query(db.readAll, (err, result) => {
     if (err) {
@@ -27,8 +26,16 @@ app.get('/api/cows', (req, res) => {
   });
 });
 
+// Add a cow to the cow list
 app.post('/api/cows', (req, res) => {
-  res.send('Post data!');
+  // console.log('POST REQEST req.body: ', req.body);
+  db.connection.query(db.addCow, [req.body.name, req.body.description], (err, result) => {
+    if (err) {
+      console.log('Err post cow data!', err);
+    }
+    console.log('Success post cow data!', result);
+    res.send(result);
+  });
 });
 
 app.listen(PORT, () => {
