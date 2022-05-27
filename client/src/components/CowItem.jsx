@@ -3,9 +3,9 @@ import React from 'react';
 const CowItem = (props) => {
   return (
   <div className='cowItem'>
-    <span>{props.name}</span>
+    <span onClick={(e) => props.handleClick(e)}>{props.name}</span>
   </div>
   )
-  };
+};
 
 export default CowItem;

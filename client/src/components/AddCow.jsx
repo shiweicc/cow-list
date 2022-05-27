@@ -26,7 +26,7 @@ class AddCow extends React.Component {
   render() {
     return (
       <div className="AddCow">
-        <h3>Add new cow 🐮:</h3>
+        <h3>🐮 Add new cow:</h3>
         <form className="form">
           <label>
             Cow Name:
